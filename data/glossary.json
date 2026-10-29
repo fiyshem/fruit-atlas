@@ -1,0 +1,107 @@
+[
+  {
+    "slug": "accessory-fruit",
+    "term": "Accessory fruit",
+    "definition": "A fruit-like structure in which tissues beyond the ovary contribute substantially to the edible part."
+  },
+  {
+    "slug": "aggregate-fruit",
+    "term": "Aggregate fruit",
+    "definition": "A fruit structure formed from several separate ovaries of a single flower, as in raspberry."
+  },
+  {
+    "slug": "berry",
+    "term": "Berry",
+    "definition": "In botany, a fleshy fruit developing from one ovary, often with seeds embedded in the pulp."
+  },
+  {
+    "slug": "brix",
+    "term": "Brix",
+    "definition": "A measure of soluble solids often used as an approximate indicator of sugar content in fruit juice."
+  },
+  {
+    "slug": "chill-requirement",
+    "term": "Chill requirement",
+    "definition": "The amount of cool winter exposure some temperate plants need for normal bud break and flowering."
+  },
+  {
+    "slug": "climacteric-fruit",
+    "term": "Climacteric fruit",
+    "definition": "A fruit that generally shows a rise in respiration during ripening and may continue to ripen after harvest."
+  },
+  {
+    "slug": "cultivar",
+    "term": "Cultivar",
+    "definition": "A cultivated plant selection maintained for consistent traits through appropriate propagation."
+  },
+  {
+    "slug": "drupe",
+    "term": "Drupe",
+    "definition": "A fruit with fleshy outer tissue and a hard inner layer surrounding the seed, such as a peach."
+  },
+  {
+    "slug": "ethylene",
+    "term": "Ethylene",
+    "definition": "A plant hormone involved in ripening and other developmental processes."
+  },
+  {
+    "slug": "flavedo",
+    "term": "Flavedo",
+    "definition": "The coloured outer part of citrus peel, rich in aromatic oil glands."
+  },
+  {
+    "slug": "landrace",
+    "term": "Landrace",
+    "definition": "A locally maintained crop population shaped by tradition, selection and environment."
+  },
+  {
+    "slug": "locule",
+    "term": "Locule",
+    "definition": "A chamber in an ovary or fruit that may contain seeds."
+  },
+  {
+    "slug": "non-climacteric-fruit",
+    "term": "Non-climacteric fruit",
+    "definition": "A fruit that generally does not show the classic climacteric respiratory rise during ripening."
+  },
+  {
+    "slug": "pepo",
+    "term": "Pepo",
+    "definition": "A type of berry with a hard rind, typical of cucurbits such as melons."
+  },
+  {
+    "slug": "pome",
+    "term": "Pome",
+    "definition": "A fruit type in which accessory floral tissues contribute to the fleshy part, as in apples and pears."
+  },
+  {
+    "slug": "pollination",
+    "term": "Pollination",
+    "definition": "Transfer of pollen to the receptive part of a flower, enabling fertilisation in many plants."
+  },
+  {
+    "slug": "rootstock",
+    "term": "Rootstock",
+    "definition": "The rooted part of a grafted plant onto which a cultivar is joined."
+  },
+  {
+    "slug": "scion",
+    "term": "Scion",
+    "definition": "The upper part of a grafted plant that determines the cultivar identity."
+  },
+  {
+    "slug": "stone",
+    "term": "Stone",
+    "definition": "The hard inner layer of a drupe surrounding its seed."
+  },
+  {
+    "slug": "tannin",
+    "term": "Tannin",
+    "definition": "A class of plant compounds that can contribute astringency in some fruits."
+  },
+  {
+    "slug": "zest",
+    "term": "Zest",
+    "definition": "The aromatic coloured outer peel of citrus, used in food in small quantities."
+  }
+]

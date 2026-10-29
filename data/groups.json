@@ -1,0 +1,191 @@
+[
+  {
+    "slug": "berries-small-fruits",
+    "name": "Berries & small fruits",
+    "count": 362,
+    "speciesCount": 43,
+    "description": "Bright, layered flavors that can be tart, fragrant, sweet or resinous.",
+    "image": "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Strawberry",
+      "Wild strawberry",
+      "Alpine strawberry",
+      "Raspberry",
+      "Black raspberry",
+      "Blackberry"
+    ]
+  },
+  {
+    "slug": "botanical-fruits-unusual-edibles",
+    "name": "Botanical fruits & unusual edibles",
+    "count": 40,
+    "speciesCount": 14,
+    "description": "Flavors and textures that may differ from the everyday culinary idea of a fruit.",
+    "image": "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Tomatillo",
+      "Bunya nut",
+      "Chayote fruit",
+      "Olive",
+      "Black olive fruit",
+      "Green olive fruit"
+    ]
+  },
+  {
+    "slug": "cacti-dryland-fruits",
+    "name": "Cacti & dryland fruits",
+    "count": 85,
+    "speciesCount": 13,
+    "description": "Crisp, juicy or seed-speckled flesh with refreshing acidity and mild sweetness.",
+    "image": "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Dragon fruit",
+      "Red dragon fruit",
+      "Yellow dragon fruit",
+      "Prickly pear",
+      "Barbary fig",
+      "Saguaro fruit"
+    ]
+  },
+  {
+    "slug": "citrus-fruits",
+    "name": "Citrus fruits",
+    "count": 318,
+    "speciesCount": 30,
+    "description": "Aromatic zest, juicy segments and a balance of acidity, bitterness and sweetness.",
+    "image": "https://images.unsplash.com/photo-1547514701-42782101795e?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Citrus orange",
+      "Sweet orange",
+      "Blood orange",
+      "Mandarin",
+      "Tangerine",
+      "Satsuma"
+    ]
+  },
+  {
+    "slug": "grapes-vine-fruits",
+    "name": "Grapes & vine fruits",
+    "count": 69,
+    "speciesCount": 3,
+    "description": "Juicy berries with sweetness, acidity, perfume and skin texture that vary widely.",
+    "image": "https://images.unsplash.com/photo-1537640538966-79f369143f8f?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Grape",
+      "Fox grape",
+      "Muscadine grape"
+    ]
+  },
+  {
+    "slug": "melons-gourds",
+    "name": "Melons & gourds",
+    "count": 126,
+    "speciesCount": 17,
+    "description": "Cool, refreshing flesh with aroma and sweetness that depend strongly on maturity.",
+    "image": "https://images.unsplash.com/photo-1571575173700-afb9492e6a50?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Watermelon",
+      "Cantaloupe",
+      "Honeydew melon",
+      "Canary melon",
+      "Piel de Sapo melon",
+      "Galia melon"
+    ]
+  },
+  {
+    "slug": "palm-arid-region-fruits",
+    "name": "Palm & arid-region fruits",
+    "count": 94,
+    "speciesCount": 20,
+    "description": "Fibrous, starchy, syrupy or chewy textures, sometimes with caramel-like notes.",
+    "image": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Açaí",
+      "Acai palm fruit",
+      "Coconut",
+      "Date",
+      "Desert date",
+      "Khejri pod"
+    ]
+  },
+  {
+    "slug": "pomegranates-figs",
+    "name": "Pomegranates & figs",
+    "count": 65,
+    "speciesCount": 6,
+    "description": "Dense sweetness, seed crunch, soft pulp or juicy arils with distinctive texture.",
+    "image": "https://images.unsplash.com/photo-1541344999736-83eca272f6fc?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Pomegranate",
+      "Fig",
+      "Smyrna fig",
+      "Persimmon",
+      "American persimmon",
+      "Date-plum"
+    ]
+  },
+  {
+    "slug": "pomes-temperate-fruits",
+    "name": "Pomes & temperate fruits",
+    "count": 209,
+    "speciesCount": 16,
+    "description": "Crisp or tender flesh, with flavors from floral-sweet to bright and tart.",
+    "image": "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Apple",
+      "Asian pear",
+      "European pear",
+      "Quince",
+      "Medlar",
+      "Loquat"
+    ]
+  },
+  {
+    "slug": "stone-fruits",
+    "name": "Stone fruits",
+    "count": 231,
+    "speciesCount": 12,
+    "description": "Juicy flesh surrounding a single hard pit, with aromas that range from honeyed to tangy.",
+    "image": "https://images.unsplash.com/photo-1629828874514-c1e5103fca1f?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Apricot",
+      "Peach",
+      "Nectarine",
+      "Flat peach",
+      "Plum",
+      "Japanese plum"
+    ]
+  },
+  {
+    "slug": "tropical-subtropical-fruits",
+    "name": "Tropical & subtropical fruits",
+    "count": 1093,
+    "speciesCount": 153,
+    "description": "A broad spectrum from floral and creamy to resinous, tangy, musky or intensely sweet.",
+    "image": "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Mango",
+      "Banana",
+      "Plantain",
+      "Red banana",
+      "Blue Java banana",
+      "Pisang Awak banana"
+    ]
+  },
+  {
+    "slug": "wild-woodland-fruits",
+    "name": "Wild & woodland fruits",
+    "count": 108,
+    "speciesCount": 28,
+    "description": "Often sharper, more astringent or more aromatic than supermarket fruit.",
+    "image": "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=1200&q=85",
+    "examples": [
+      "Serviceberry",
+      "Juneberry",
+      "Rowan berry",
+      "Hawthorn berry",
+      "Rose hip",
+      "Cornelian cherry"
+    ]
+  }
+]

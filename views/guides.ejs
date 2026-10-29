@@ -1,0 +1,40 @@
+<%- include('partials/head') %>
+<section class="page-hero page-hero-simple guides-hero">
+  <div>
+    <span class="eyebrow">THE LEARNING LIBRARY</span>
+    <h1>Ask a question.<br><em>Go deeper.</em></h1>
+    <p>Explore the science, flavour, nutrition, growing traditions, ecology, chemistry and biology behind the world of fruit.</p>
+    <div class="guide-subject-chips"><span>Botany</span><span>Chemistry</span><span>Biology</span><span>Food science</span><span>Ecology</span></div>
+  </div>
+  <div class="learning-hero-image"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&crop=entropy&w=1300&h=900&q=85" alt="Sunlit forest canopy as a backdrop for botanical learning" fetchpriority="high"><div><span>LEARN FROM NATURE</span><strong>Look closer.</strong></div></div>
+</section>
+<section class="section-block learning-library-section">
+  <div class="section-heading-row">
+    <div><span class="eyebrow">THE WHOLE LIBRARY</span><h2>Follow the questions</h2><p>Search the topics or choose a subject area. Every guide connects practical knowledge with the science and diversity of fruit.</p></div>
+  </div>
+  <form class="filter-panel guide-library-filter" action="/guides" method="get" role="search">
+    <div class="filter-search"><label for="guideQuery">Search learning topics</label><input id="guideQuery" type="search" name="q" value="<%= q %>" placeholder="Try pollination, vitamin C, pectin…"></div>
+    <div><label for="guideCategory">Subject area</label><select id="guideCategory" name="category"><option value="">All subject areas</option><% guideCategories.forEach(function(item) { %><option value="<%= item.category %>" <%= selectedCategory === item.category ? 'selected' : '' %>><%= item.category %></option><% }); %></select></div>
+    <button class="button-primary" type="submit">Find guides</button>
+    <% if (q || selectedCategory) { %><a class="filter-reset" href="/guides">Clear filters</a><% } %>
+  </form>
+  <div class="guide-library-results" aria-live="polite"><strong><%= visibleGuides.length ? 'Learning topics' : 'No matching topics' %></strong><% if (selectedCategory) { %> in <strong><%= selectedCategory %></strong><% } %><% if (q) { %> matching <strong>“<%= q %>”</strong><% } %></div>
+  <% if (visibleGuides.length) { %>
+    <div class="guide-index-grid">
+      <% visibleGuides.forEach(function(guide,index) { %>
+        <article class="guide-index-card">
+          <a class="guide-index-image" href="/guide/<%= guide.slug %>" aria-label="Read <%= guide.title %>"><img src="<%= guide.image %>" alt="<%= guide.imageAlt %>" loading="lazy"></a>
+          <div class="guide-index-copy">
+            <div class="guide-card-top"><span><%= guide.category %></span></div>
+            <h3><a href="/guide/<%= guide.slug %>"><%= guide.title %></a></h3>
+            <p><%= guide.intro %></p>
+            <a class="text-link" href="/guide/<%= guide.slug %>">Read guide <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      <% }); %>
+    </div>
+  <% } else { %>
+    <div class="empty-state guide-empty-state"><span class="eyebrow">NO MATCHES</span><h2>No guide matches those filters.</h2><p>Try a broader keyword or switch back to all subject areas.</p><a class="button-primary" href="/guides">Return to the learning library</a></div>
+  <% } %>
+</section>
+<%- include('partials/end') %>

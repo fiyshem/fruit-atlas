@@ -1,0 +1,17 @@
+<%- include('partials/head') %>
+<section class="page-hero page-hero-compact fruit-index-hero"><div class="page-hero-copy"><span class="eyebrow">THE COMPLETE DIRECTORY</span><h1>Find your<br><em>next fruit.</em></h1><p>Search the catalogue by common name, scientific name, group, origin or cultivar. Use filters to move between species profiles, named selections and form guides.</p><div class="guide-subject-chips"><span>Species</span><span>Cultivars</span><span>Fruit forms</span></div></div><div class="page-hero-side"><div class="page-hero-side-image"><img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=1300&q=85" data-wiki-page="Fruit" data-image-fallback="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=1300&q=85" alt="Colourful fruit assortment" loading="eager"></div><div class="hero-side-note"><span>ATLAS NOTE</span><p>Common names overlap. Scientific names and profile types help separate similar entries.</p></div></div></section>
+<section class="section-block directory-section">
+  <form class="filter-panel" action="/fruits" method="get">
+    <div class="filter-search"><label for="catalogSearch">Search the catalogue</label><input id="catalogSearch" type="search" name="q" value="<%= q %>" placeholder="Try mango, Malus domestica, tropical…"></div>
+    <div><label for="catalogGroup">Fruit group</label><select id="catalogGroup" name="group"><option value="">All groups</option><% groups.forEach(function(group) { %><option value="<%= group.name %>" <%= selectedGroup === group.name ? 'selected' : '' %>><%= group.name %></option><% }); %></select></div>
+    <div><label for="catalogType">Profile type</label><select id="catalogType" name="type"><option value="">All profile types</option><% types.forEach(function(type) { %><option value="<%= type %>" <%= selectedType === type ? 'selected' : '' %>><%= type %></option><% }); %></select></div>
+    <button class="button-primary" type="submit">Apply filters <span aria-hidden="true">↗</span></button>
+    <% if (q || selectedGroup || selectedType) { %><a class="filter-reset" href="/fruits">Clear filters</a><% } %>
+  </form>
+  <div class="results-bar"><div><span class="eyebrow">CATALOGUE INDEX</span><h2><%= total.toLocaleString('en-US') %> profiles <%= q ? `for “${q}”` : '' %></h2></div><p>Showing <strong><%= start %>–<%= end %></strong> of <%= total.toLocaleString('en-US') %></p></div>
+  <% if (!items.length) { %><div class="empty-state"><span class="eyebrow">NO MATCHES YET</span><h2>Try a broader search.</h2><p>Search with a shorter name, browse all groups or clear one of the filters.</p><a class="button-primary" href="/fruits">Show the full catalogue</a></div><% } else { %>
+  <div class="fruit-card-grid directory-grid"><% items.forEach(function(fruit) { %><%- include('partials/fruit-card', { fruit: fruit }) %><% }); %></div>
+  <% } %>
+  <nav class="pagination" aria-label="Catalogue pages"><% if (page > 1) { %><a href="?q=<%= encodeURIComponent(q) %>&group=<%= encodeURIComponent(selectedGroup) %>&type=<%= encodeURIComponent(selectedType) %>&page=<%= page-1 %>">← Previous</a><% } else { %><span></span><% } %><span>Page <strong><%= page %></strong> of <%= totalPages %></span><% if (page < totalPages) { %><a href="?q=<%= encodeURIComponent(q) %>&group=<%= encodeURIComponent(selectedGroup) %>&type=<%= encodeURIComponent(selectedType) %>&page=<%= page+1 %>">Next page →</a><% } else { %><span></span><% } %></nav>
+</section>
+<%- include('partials/end') %>

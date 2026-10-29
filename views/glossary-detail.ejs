@@ -1,0 +1,4 @@
+<%- include('partials/head') %>
+<div class="breadcrumb-row"><a href="/">Home</a><span>／</span><a href="/glossary">Glossary</a><span>／</span><span><%= term.term %></span></div>
+<section class="glossary-detail-panel"><span class="eyebrow">GLOSSARY ENTRY</span><div class="glossary-detail-letter"><%= term.term.charAt(0).toUpperCase() %></div><h1><%= term.term %></h1><p><%= term.definition %></p><div class="glossary-detail-links"><a class="button-primary" href="/glossary">Back to glossary <span aria-hidden="true">↗</span></a><a class="outline-link" href="/guide/fruit-botany-from-flower-to-fruit">Read fruit botany guide</a></div></section>
+<%- include('partials/end') %>

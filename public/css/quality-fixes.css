@@ -1,0 +1,865 @@
+/* Shared layout and quality fixes — kept separate from the original theme for easy maintenance. */
+:root {
+  --fruit-content-max: 1420px;
+  --fruit-wide-edge: max(clamp(24px, 4.4vw, 72px), calc((100% - var(--fruit-content-max)) / 2));
+}
+
+html { min-width: 320px; }
+body { overflow-x: clip; }
+
+/* The content column owns both the main landmark and the site footer. */
+.content-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(100vh - 82px);
+  min-height: calc(100dvh - 82px);
+}
+.main-content {
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  overflow: visible;
+  background: var(--cream);
+}
+.footer-expander-wrap {
+  flex: 0 0 auto;
+  margin-top: auto;
+  padding-left: var(--fruit-wide-edge);
+  padding-right: var(--fruit-wide-edge);
+}
+.site-footer {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding-left: var(--fruit-wide-edge);
+  padding-right: var(--fruit-wide-edge);
+}
+
+/* Keep section edges aligned and content centred in very wide browser windows. */
+.section-block,
+.directory-section,
+.related-section,
+.page-hero,
+.fruit-profile-hero,
+.profile-content-wrap,
+.breadcrumb-row,
+.longform-page,
+.error-page {
+  padding-left: var(--fruit-wide-edge);
+  padding-right: var(--fruit-wide-edge);
+}
+.section-block > .section-heading-row,
+.section-block > .fruit-card-grid,
+.section-block > .family-grid,
+.section-block > .family-grid-large,
+.section-block > .nutrition-card-grid,
+.section-block > .plain-two-column,
+.section-block > .quick-link-grid,
+.section-block > .guide-index-grid,
+.section-block > .glossary-list,
+.section-block > .region-grid,
+.section-block > .four-rule-grid,
+.section-block > .storage-step-grid,
+.section-block > .grow-question-grid,
+.section-block > .season-tool-section,
+.section-block > .season-method,
+.section-block > .compare-controls,
+.section-block > .compare-hero-grid,
+.section-block > .catalogue-type-grid,
+.section-block > .data-method-note,
+.directory-section > .filter-panel,
+.directory-section > .results-bar,
+.directory-section > .fruit-card-grid,
+.directory-section > .empty-state,
+.directory-section > .pagination,
+.related-section > .section-heading-row,
+.related-section > .fruit-card-grid {
+  width: 100%;
+  max-width: var(--fruit-content-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* A compact, plain accordion sidebar like the tree reference site. */
+.sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: #dccbc5 transparent;
+}
+.sidebar-group {
+  margin: 0 0 5px;
+  padding: 0 0 5px;
+  border-bottom: 1px solid #eadfd6;
+}
+.sidebar-group > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 35px;
+  padding: 7px 8px;
+  border-radius: 7px;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  color: #86737a;
+  transition: background .15s, color .15s;
+}
+.sidebar-group > summary::-webkit-details-marker { display: none; }
+.sidebar-group > summary:hover,
+.sidebar-group[open] > summary {
+  background: #f4eae1;
+  color: var(--plum);
+}
+.sidebar-group-title {
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.sidebar-group > summary h2 { margin: 0; }
+.sidebar-chevron {
+  flex: 0 0 auto;
+  color: #a18a90;
+  font-size: 15px;
+  line-height: 1;
+  transition: transform .18s ease;
+}
+.sidebar-group[open] > summary .sidebar-chevron { transform: rotate(180deg); }
+.sidebar-group nav { display: grid; gap: 2px; padding: 3px 0 7px; }
+.sidebar .side-link {
+  min-height: 34px;
+  padding: 7px 9px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  border-left: 3px solid transparent;
+  transition: color .15s, background .15s, border-color .15s;
+}
+.sidebar .side-link:hover { transform: none; }
+.sidebar .side-link.active { border-left-color: var(--berry); }
+
+/* Use a quiet, plain hamburger control rather than a decorative badge. */
+.menu-toggle {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #f4e4e7;
+  border-radius: 9px;
+  background: #fffaf2;
+  color: var(--plum);
+  box-shadow: none;
+}
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  background: #f7e9e2;
+  border-color: #e6c8c9;
+}
+.menu-lines { width: 16px; gap: 4px; }
+.menu-lines i { height: 1.7px; border-radius: 1px; background: currentColor; }
+
+/* Keep long names, cards, tables and form controls inside their layout columns. */
+.main-content *,
+.footer-expander-wrap *,
+.site-footer * { min-width: 0; }
+.fruit-card-copy,
+.profile-article,
+.profile-sidebar,
+.longform-body,
+.longform-toc,
+.page-hero-copy,
+.page-hero-side,
+.directory-section,
+.filter-panel > div { min-width: 0; }
+.fruit-card h3,
+.directory-card h3,
+.profile-data-card dd,
+.comparison-table td,
+.comparison-table th,
+.footer-columns a,
+.footer-family-row a { overflow-wrap: anywhere; }
+img { height: auto; }
+.fruit-card-image img,
+.page-hero-side-image img,
+.profile-image-frame img,
+.fruit-profile-visual img,
+.hero-photo-frame img,
+.editorial-image img,
+.region-card-image img,
+.nutrition-feature-image img {
+  height: 100%;
+}
+
+/* Large top bars remain usable before switching to the compact mobile layout. */
+@media (max-width: 1160px) and (min-width: 981px) {
+  .topbar { gap: 10px; padding-left: 15px; padding-right: 15px; }
+  .brand-lockup { min-width: 142px; }
+  .brand-words small { display: none; }
+  .topbar-links { gap: 10px; }
+  .topbar-link,
+  .topbar-dropdown > summary { font-size: 10px; }
+  .topbar-search { width: 150px; min-width: 140px; }
+}
+
+@media (min-width: 981px) {
+  .sidebar {
+    position: sticky;
+    top: 82px;
+    height: calc(100vh - 82px);
+    height: calc(100dvh - 82px);
+    max-height: calc(100vh - 82px);
+    max-height: calc(100dvh - 82px);
+    align-self: start;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .content-column { min-height: calc(100vh - 74px); min-height: calc(100dvh - 74px); }
+  .sidebar {
+    position: fixed;
+    top: 74px;
+    bottom: 0;
+    height: auto;
+    max-height: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  .sidebar-group > summary { min-height: 38px; }
+  .menu-toggle { background: transparent; color: #fffaf4; border-color: #ffffff45; }
+  .menu-toggle:hover,
+  .menu-toggle:focus-visible { background: #ffffff15; border-color: #ffffff99; }
+  .section-block,
+  .directory-section,
+  .related-section,
+  .page-hero,
+  .fruit-profile-hero,
+  .profile-content-wrap,
+  .breadcrumb-row,
+  .longform-page,
+  .error-page {
+    padding-left: clamp(22px, 4vw, 38px);
+    padding-right: clamp(22px, 4vw, 38px);
+  }
+}
+
+@media (max-width: 700px) {
+  .content-column { min-height: calc(100vh - 66px); min-height: calc(100dvh - 66px); }
+  .sidebar { top: 66px; }
+  .footer-expander-wrap { padding-left: 15px; padding-right: 15px; }
+  .site-footer { padding-left: 20px; padding-right: 20px; }
+  .footer-drawer > summary { align-items: flex-start; }
+  .footer-drawer > summary > span:first-child { min-width: 0; }
+  .footer-drawer-action { white-space: normal; text-align: right; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-group > summary,
+  .sidebar-chevron,
+  .menu-toggle,
+  .menu-lines i { transition: none !important; }
+}
+
+/* Highlight the selected keyboard suggestion without relying on hover. */
+.search-suggestions a.is-active,
+.search-suggestions a[aria-selected="true"] { background: #f6e8df; outline: 2px solid transparent; }
+
+.image-unavailable { opacity: 0 !important; }
+
+
+/* Expanded educational library: keep topic filters and the 60-guide index aligned. */
+.section-block > .guide-library-filter,
+.section-block > .guide-library-results,
+.section-block > .guide-index-grid,
+.section-block > .guide-empty-state {
+  width: 100%;
+  max-width: var(--fruit-content-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+.guide-library-filter {
+  grid-template-columns: minmax(260px, 1.65fr) minmax(220px, 1fr) auto auto;
+  margin-top: 22px;
+}
+.guide-library-results {
+  color: #89787e;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: -10px;
+  margin-bottom: 18px;
+}
+.guide-library-results strong { color: var(--plum); }
+.guide-empty-state { margin-top: 16px; }
+.sidebar-learning-highlight {
+  display: grid;
+  gap: 5px;
+  margin: 12px 0 16px;
+  padding: 11px 10px;
+  border: 1px solid #ead8ce;
+  border-radius: 8px;
+  background: #fffaf3;
+  color: var(--plum);
+  text-decoration: none;
+}
+.sidebar-learning-highlight > span {
+  color: #92727d;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+.sidebar-learning-highlight > strong {
+  font-size: 12px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.sidebar-learning-highlight b { color: var(--berry); margin-left: 4px; }
+.sidebar-learning-highlight:hover { background: #f8eee2; border-color: #dcb9b4; }
+@media (max-width: 760px) {
+  .guide-library-filter { grid-template-columns: 1fr 1fr; }
+  .guide-library-filter .filter-search { grid-column: 1 / -1; }
+  .guide-library-filter .button-primary { grid-column: 1 / -1; }
+  .guide-library-filter .filter-reset { grid-column: 1 / -1; justify-self: start; }
+}
+
+/* Educational imagery, botanical science pages, and a calmer no-counter interface. */
+.sidebar-field-note {
+  margin: 10px 0 14px;
+  padding: 10px 10px 11px;
+  border-left: 2px solid #a8bca6;
+  background: #f4f5ea;
+}
+.sidebar-field-note > span,
+.type-kicker {
+  display: block;
+  color: #6e8270;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.sidebar-field-note p {
+  color: #746b61;
+  font-size: 11px;
+  line-height: 1.55;
+  margin: 6px 0 0;
+}
+.ambient-landscape-banner {
+  position: relative;
+  height: clamp(135px, 19vw, 255px);
+  overflow: hidden;
+  background: #2d4a38;
+  isolation: isolate;
+}
+.ambient-landscape-banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 48%;
+  filter: saturate(.82);
+}
+.ambient-landscape-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(24, 43, 32, .62), rgba(24, 43, 32, .08) 75%), linear-gradient(0deg, rgba(24, 43, 32, .2), transparent 65%);
+}
+.ambient-landscape-banner > span {
+  position: absolute;
+  left: var(--fruit-wide-edge);
+  bottom: 24px;
+  color: #fffaf1;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-shadow: 0 1px 8px #182b20;
+}
+.atlas-intro-strip {
+  display: grid;
+  grid-template-columns: minmax(180px, .7fr) minmax(260px, 1.2fr) auto;
+  align-items: center;
+  gap: clamp(18px, 3vw, 45px);
+  padding: 22px var(--fruit-wide-edge);
+  background: #f1e6d8;
+  border-bottom: 1px solid #e4d3c2;
+}
+.atlas-intro-strip > div { display: grid; gap: 5px; }
+.atlas-intro-strip > div > strong {
+  color: var(--plum);
+  font: 400 clamp(20px, 2.1vw, 29px)/1.08 var(--serif);
+}
+.atlas-intro-strip > p { margin: 0; color: #766a62; font-size: 12px; line-height: 1.75; max-width: 620px; }
+.guide-subject-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+.guide-subject-chips span {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border: 1px solid #d9c8b6;
+  border-radius: 999px;
+  background: rgba(255, 250, 242, .72);
+  color: #70594d;
+  font-size: 10px;
+  line-height: 1.2;
+}
+.guides-hero { grid-template-columns: minmax(0, 1.1fr) minmax(280px, .7fr); align-items: stretch; }
+.learning-hero-image {
+  position: relative;
+  min-height: 245px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #294635;
+}
+.learning-hero-image img { display: block; width: 100%; height: 100%; min-height: 245px; object-fit: cover; }
+.learning-hero-image::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(0deg, rgba(24, 40, 29, .76), transparent); }
+.learning-hero-image > div { position: absolute; z-index: 1; left: 20px; right: 20px; bottom: 18px; color: #fff8ef; display: grid; gap: 4px; }
+.learning-hero-image > div span { font-size: 9px; letter-spacing: .16em; font-weight: 800; }
+.learning-hero-image > div strong { font: 400 31px/1 var(--serif); }
+.guide-index-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.guide-index-card {
+  grid-template-columns: minmax(155px, .7fr) minmax(0, 1.3fr);
+  gap: 0;
+  overflow: hidden;
+  padding: 0;
+  align-items: stretch;
+}
+.guide-index-image { display: block; min-height: 220px; overflow: hidden; background: #dce5d3; }
+.guide-index-image img { display: block; width: 100%; height: 100%; min-height: 220px; object-fit: cover; transition: transform .35s ease; }
+.guide-index-card:hover .guide-index-image img { transform: scale(1.035); }
+.guide-index-copy { padding: 19px 20px; }
+.guide-index-copy h3 { margin-top: 12px; }
+.guide-index-copy .text-link { margin-top: auto; }
+.guide-card { padding: 0; overflow: hidden; }
+.guide-card-image { display: block; width: 100%; aspect-ratio: 16 / 8.8; overflow: hidden; background: #dce5d3; }
+.guide-card-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+.guide-card:hover .guide-card-image img { transform: scale(1.035); }
+.guide-card-copy { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 18px 20px 20px; width: 100%; }
+.guide-card-copy h3 { margin-top: 10px; }
+.guide-card-copy p { flex: 1; }
+.guide-card-copy .text-link { margin-top: auto; }
+.guide-cover {
+  position: relative;
+  max-width: 1000px;
+  margin: 28px auto 0;
+  aspect-ratio: 2.25 / 1;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #d6e0cd;
+  box-shadow: 0 18px 44px rgba(57, 43, 32, .1);
+}
+.guide-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.guide-cover figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 27px 20px 13px;
+  color: #fffaf2;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  background: linear-gradient(0deg, rgba(32, 45, 33, .72), transparent);
+}
+.longform-toc { align-self: start; }
+.longform-toc a { display: block; }
+.longform-body section { scroll-margin-top: 95px; }
+.related-guides-section .guide-card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.science-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+  gap: clamp(25px, 4vw, 60px);
+  align-items: center;
+  padding: clamp(36px, 5vw, 72px) var(--fruit-wide-edge);
+  background: #294d3a;
+  color: #fff9ef;
+}
+.science-hero-copy { max-width: 710px; }
+.science-hero h1 { margin: 17px 0; color: #fff8ee; font: 400 clamp(46px, 6vw, 76px)/.98 var(--serif); letter-spacing: -.04em; }
+.science-hero h1 em { color: #d9e7c7; }
+.science-hero p { max-width: 680px; margin: 0; color: #e1e8dc; font-size: 14px; line-height: 1.9; }
+.science-hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 25px; }
+.science-hero-photo { position: relative; min-height: 390px; overflow: hidden; border-radius: 11px; background: #dba14d; }
+.science-hero-photo img { display: block; width: 100%; height: 100%; min-height: 390px; object-fit: cover; }
+.science-photo-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 42px 18px 17px; color: #fffaf2; font-size: 10px; letter-spacing: .12em; font-weight: 700; background: linear-gradient(0deg, rgba(29, 42, 31, .65), transparent); }
+.science-intro-grid { display: grid; grid-template-columns: minmax(230px, .8fr) minmax(0, 1.2fr); gap: 45px; align-items: start; padding-top: 45px; padding-bottom: 45px; }
+.science-intro-grid h2 { margin: 8px 0 0; color: var(--plum); font: 400 clamp(30px, 3vw, 42px)/1.08 var(--serif); }
+.science-intro-grid p { margin: 0; color: #74675e; font-size: 13px; line-height: 1.9; }
+.science-track { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: #f4e7d8; }
+.science-track-reverse .science-track-image { order: 2; }
+.science-track-reverse .science-track-content { order: 1; }
+.science-track-image { min-height: 440px; overflow: hidden; background: #d6e0ce; }
+.science-track-image img { display: block; width: 100%; height: 100%; min-height: 440px; object-fit: cover; }
+.science-track-content { align-self: center; padding: clamp(28px, 5vw, 70px); }
+.science-track-content h2 { max-width: 620px; margin: 11px 0 14px; color: var(--plum); font: 400 clamp(32px, 3.6vw, 49px)/1.05 var(--serif); }
+.science-track-content > p { max-width: 620px; margin: 0 0 20px; color: #76695f; font-size: 13px; line-height: 1.85; }
+.science-guide-list { display: grid; border-top: 1px solid #ddc8b5; }
+.science-guide-list a { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 13px 0; border-bottom: 1px solid #ddc8b5; color: var(--plum); text-decoration: none; font-size: 12px; line-height: 1.5; }
+.science-guide-list a b { color: var(--berry); flex: 0 0 auto; }
+.science-guide-list a:hover span { text-decoration: underline; text-underline-offset: 3px; }
+.science-field-note { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); background: #244332; color: #fff8ec; }
+.science-field-note-image { min-height: 340px; overflow: hidden; }
+.science-field-note-image img { display: block; width: 100%; height: 100%; min-height: 340px; object-fit: cover; }
+.science-field-note > div:last-child { align-self: center; padding: clamp(28px, 4.5vw, 60px); }
+.science-field-note h2 { margin: 10px 0 12px; color: #fff8ec; font: 400 clamp(30px, 3.2vw, 44px)/1.05 var(--serif); }
+.science-field-note p { max-width: 550px; margin: 0 0 19px; color: #e0e7db; font-size: 13px; line-height: 1.85; }
+.type-kicker { margin-bottom: 13px; }
+.catalogue-type-grid article .type-kicker { color: #8a7378; }
+.hero-note-line { margin: 12px 0 0; color: #836f70; font-size: 11px; line-height: 1.7; }
+.guide-library-results { margin-top: 3px; }
+@media (max-width: 980px) {
+  .atlas-intro-strip { grid-template-columns: 1fr; gap: 11px; }
+  .atlas-intro-strip > .outline-link { justify-self: start; }
+  .guides-hero { grid-template-columns: minmax(0, 1fr) minmax(250px, .8fr); }
+  .science-hero { grid-template-columns: 1fr; }
+  .science-hero-photo, .science-hero-photo img { min-height: 280px; max-height: 400px; }
+  .science-intro-grid { grid-template-columns: 1fr; gap: 15px; }
+  .science-track, .science-field-note { grid-template-columns: 1fr; }
+  .science-track-reverse .science-track-image, .science-track-reverse .science-track-content { order: initial; }
+  .science-track-image, .science-track-image img { min-height: 280px; max-height: 420px; }
+  .science-field-note-image, .science-field-note-image img { min-height: 250px; max-height: 360px; }
+  .related-guides-section .guide-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .ambient-landscape-banner { height: 135px; }
+  .ambient-landscape-banner > span { bottom: 17px; font-size: 8px; }
+  .atlas-intro-strip { padding: 19px 20px; }
+  .guides-hero { display: grid; grid-template-columns: 1fr; }
+  .learning-hero-image, .learning-hero-image img { min-height: 205px; max-height: 250px; }
+  .guide-index-grid { grid-template-columns: 1fr; }
+  .guide-index-card { grid-template-columns: minmax(100px, .65fr) minmax(0, 1fr); }
+  .guide-index-image, .guide-index-image img { min-height: 200px; }
+  .guide-index-copy { padding: 15px; }
+  .guide-cover { margin-top: 20px; aspect-ratio: 1.35 / 1; }
+  .longform-layout { gap: 17px; }
+  .science-hero { padding: 32px 22px; }
+  .science-hero h1 { font-size: 48px; }
+  .science-hero p { font-size: 12px; }
+  .science-hero-photo, .science-hero-photo img { min-height: 230px; }
+  .science-track-content { padding: 28px 22px; }
+  .science-field-note > div:last-child { padding: 28px 22px; }
+  .related-guides-section .guide-card-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 430px) {
+  .guide-index-card { grid-template-columns: 1fr; }
+  .guide-index-image, .guide-index-image img { height: 190px; min-height: 190px; }
+}
+
+
+/* Editorial split hero for every learning article: title left, unique photograph right. */
+.guide-detail-editorial {
+  width: 100%;
+  max-width: 1540px;
+  margin: 0 auto;
+  padding-top: clamp(10px, 1.6vw, 22px);
+  padding-bottom: clamp(40px, 5vw, 68px);
+}
+.guide-detail-editorial > .breadcrumb-row {
+  padding-left: 0;
+  padding-right: 0;
+}
+.guide-article-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(300px, .94fr);
+  align-items: center;
+  gap: clamp(26px, 4.2vw, 66px);
+  margin: 0 0 28px;
+  padding: 10px 0 clamp(24px, 3vw, 38px);
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.guide-article-hero-copy {
+  min-width: 0;
+  max-width: 790px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.guide-article-hero-copy .eyebrow {
+  margin-bottom: 12px;
+  line-height: 1.55;
+}
+.guide-article-hero-copy h1 {
+  max-width: 18ch;
+  margin: 0 0 17px;
+  color: var(--leaf-dark);
+  font: 400 clamp(38px, 4.2vw, 64px)/1.04 var(--serif);
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.guide-article-hero-copy .longform-deck {
+  max-width: 66ch;
+  margin: 0;
+  color: #6e625e;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.85;
+}
+.guide-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 22px;
+  color: #8a7771;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+.guide-hero-meta span + span {
+  padding-left: 17px;
+  border-left: 1px solid var(--line-strong);
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: none;
+}
+.guide-article-hero-photo {
+  position: relative;
+  width: 100%;
+  height: clamp(270px, 31vw, 405px);
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px 18px 54px 18px;
+  background: #dce6d7;
+  box-shadow: 0 16px 40px rgba(37, 58, 39, .13);
+}
+.guide-article-hero-photo::after {
+  position: absolute;
+  inset: 38% 0 0;
+  content: '';
+  background: linear-gradient(180deg, transparent, rgba(22, 40, 28, .48));
+  pointer-events: none;
+}
+.guide-article-hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .55s ease;
+}
+.guide-article-hero-photo:hover img { transform: scale(1.025); }
+.guide-article-hero-photo figcaption {
+  position: absolute;
+  z-index: 1;
+  right: 16px;
+  bottom: 14px;
+  left: 18px;
+  color: #fffdf6;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+.guide-detail-editorial .longform-layout {
+  max-width: 1250px;
+  grid-template-columns: minmax(180px, 235px) minmax(0, 1fr);
+  gap: clamp(30px, 4.3vw, 68px);
+  padding-top: 16px;
+}
+.guide-detail-editorial .longform-body h2 { color: var(--leaf-dark); }
+.guide-detail-editorial .longform-toc a:focus-visible,
+.guide-detail-editorial .longform-body a:focus-visible { outline: 2px solid var(--leaf); outline-offset: 3px; }
+
+@media (max-width: 900px) {
+  .guide-article-hero { grid-template-columns: minmax(0, 1fr) minmax(260px, .86fr); gap: 24px; }
+  .guide-article-hero-copy h1 { font-size: clamp(34px, 4.4vw, 48px); }
+  .guide-article-hero-photo { height: clamp(245px, 35vw, 330px); }
+  .guide-detail-editorial .longform-layout { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .guide-detail-editorial .longform-toc { position: static; display: flex; flex-wrap: wrap; gap: 7px; }
+  .guide-detail-editorial .longform-toc .eyebrow { width: 100%; }
+  .guide-detail-editorial .longform-toc a { padding: 7px 10px; border: 1px solid var(--line); border-radius: 7px; background: #fffaf2; }
+}
+@media (max-width: 680px) {
+  .guide-detail-editorial { padding-top: 0; padding-bottom: 38px; }
+  .guide-article-hero { grid-template-columns: minmax(0, 1fr); gap: 21px; margin-bottom: 20px; padding-top: 14px; }
+  .guide-article-hero-copy { grid-row: 1; }
+  .guide-article-hero-copy h1 { max-width: 19ch; font-size: clamp(36px, 9.2vw, 49px); line-height: 1.04; }
+  .guide-article-hero-copy .longform-deck { font-size: 15px; }
+  .guide-hero-meta { margin-top: 16px; font-size: 9px; }
+  .guide-article-hero-photo { grid-row: 2; height: clamp(230px, 62vw, 340px); border-radius: 14px 14px 38px 14px; }
+  .guide-detail-editorial .longform-layout { padding-top: 12px; }
+}
+
+/* Fruit Atlas final visual pass: keep the identity berry/citrus-led, not forest-green. */
+:root {
+  --fruit-content-max: 1420px;
+  --fruit-wide-edge: max(clamp(22px, 4vw, 64px), calc((100% - var(--fruit-content-max)) / 2));
+}
+.topbar { gap: 20px; padding-left: 24px; padding-right: 24px; }
+.topbar-links { justify-content: center; gap: clamp(14px, 2vw, 30px); }
+.topbar-link { font-size: 13px; }
+.topbar-search { width: 210px; min-width: 175px; }
+.sidebar { padding-top: 20px; }
+.sidebar-simple-intro { padding: 3px 8px 16px; margin-bottom: 7px; border-bottom: 1px solid #eadfd6; }
+.sidebar-simple-intro p { margin-top: 7px; font-size: 12px; line-height: 1.55; }
+.sidebar-bottom-note { margin-top: 18px; padding-top: 13px; }
+.sidebar-bottom-note span { color: #9a7b83; font-size: 9px; font-weight: 700; letter-spacing: .1em; line-height: 1.6; }
+.sidebar-group > summary { font-size: 11px; }
+.sidebar .side-link { font-size: 12px; }
+
+/* Homepage hero: keep the fruit photograph editorial rather than oversized. */
+.home-hero { min-height: 390px; grid-template-columns: minmax(0, 1.06fr) minmax(320px, .94fr); }
+.hero-copy { padding-top: 42px; padding-bottom: 38px; }
+.hero-copy h1 { font-size: clamp(44px, 4.7vw, 64px); margin: 17px 0 15px; }
+.hero-deck { font-size: 14px; line-height: 1.68; margin-bottom: 20px; }
+.hero-visual { min-height: 390px; max-height: 390px; padding: 20px 22px 20px 0; }
+.hero-photo-frame { border-radius: 4px 4px 4px 42px; }
+.hero-photo-frame img { height: 350px; min-height: 350px; max-height: 350px; }
+.hero-stamp { width: 82px; height: 82px; top: 46px; font-size: 8px; }
+.hero-stamp strong { font-size: 18px; }
+.hero-float-note { padding: 10px 13px; font-size: 10px; }
+
+/* The chemistry/biology hub uses the fruit palette throughout. */
+.science-hero { background: linear-gradient(118deg, #542b3d 0%, #71354c 68%, #8b3c50 100%); color: #fff9f2; }
+.science-hero h1 { color: #fff9f2; }
+.science-hero h1 em { color: #f5b64a; }
+.science-hero p { color: #f0dfe2; }
+.science-hero .light-link { color: #fff1d5; }
+.science-hero .button-primary { background: var(--mango); color: var(--plum); }
+.science-hero .button-primary:hover { background: #ffd17a; }
+.science-track { background: #fff4e8; }
+.science-track-reverse { background: #fff9f2; }
+.science-track-image { background: #f0d8cf; }
+.science-track-content h2 { color: var(--plum); }
+.science-track-content > p { color: #76656a; }
+.science-guide-list { border-top-color: #e7d5d0; }
+.science-guide-list a { color: var(--plum); border-bottom-color: #e7d5d0; }
+.science-guide-list a b { color: var(--berry); }
+.science-field-note { background: linear-gradient(115deg, #51263b, #71354c); color: #fff8ec; }
+.science-field-note h2 { color: #fff8ec; }
+.science-field-note p { color: #f0dfe2; }
+.science-field-note .light-link { color: #ffe1a4; }
+.science-intro-grid h2 { color: var(--plum); }
+
+/* In both chemistry and biology feature bands, place the photograph on the right. */
+.science-track .science-track-image { order: 2; }
+.science-track .science-track-content { order: 1; }
+
+/* Guide detail pages retain the forest-reference split layout but use Fruit Atlas colours. */
+.guide-article-hero-copy h1,
+.guide-detail-editorial .longform-body h2 { color: var(--plum); }
+.guide-article-hero-copy .eyebrow { color: var(--berry-dark); }
+.guide-article-hero-photo { background: #f1d8ce; box-shadow: 0 16px 40px rgba(81, 38, 59, .12); }
+.guide-detail-editorial .longform-toc a:focus-visible,
+.guide-detail-editorial .longform-body a:focus-visible { outline-color: var(--berry); }
+.guide-detail-editorial .longform-toc a { color: var(--plum); }
+.guide-detail-editorial .longform-body section { scroll-margin-top: 100px; }
+
+/* Replace the expandable footer drawer with a clean, always-visible footer. */
+.footer-expander-wrap { display: none !important; }
+.site-footer {
+  display: block;
+  margin-top: auto;
+  padding-top: 36px;
+  padding-bottom: 18px;
+  background: #4d2438;
+  color: #fff8f0;
+}
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(230px, 1.6fr) repeat(3, minmax(130px, .8fr));
+  gap: clamp(24px, 4vw, 58px);
+  max-width: var(--fruit-content-max);
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+.footer-brand-block { max-width: 330px; }
+.footer-brand { display: inline-flex; flex-direction: column; gap: 6px; color: #fff8f0; font-size: 14px; font-weight: 800; letter-spacing: .15em; }
+.footer-brand span { color: #e7cbd2; font-size: 11px; font-weight: 500; letter-spacing: .02em; }
+.footer-brand-block p { max-width: 310px; margin: 16px 0 0; color: #e8d6dc; font-size: 12px; line-height: 1.8; }
+.footer-link-column { display: grid; align-content: start; gap: 9px; }
+.footer-link-column h2 { margin: 2px 0 5px; color: #f5b64a; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.footer-link-column a { width: fit-content; color: #f4e7e8; font-size: 12px; line-height: 1.5; }
+.footer-link-column a:hover { color: #f5b64a; text-decoration: underline; text-underline-offset: 3px; }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px 22px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.17); color: #d9c2ca; font-size: 10px; line-height: 1.6; }
+.footer-bottom a { color: #fff2d7; }
+.footer-bottom a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 1100px) {
+  .topbar { gap: 14px; padding-left: 18px; padding-right: 18px; }
+  .brand-lockup { min-width: 160px; }
+  .topbar-links { gap: 13px; }
+  .topbar-search { width: 175px; min-width: 145px; }
+  .footer-main { grid-template-columns: minmax(200px, 1.3fr) repeat(3, minmax(110px, .8fr)); gap: 22px; }
+}
+@media (max-width: 900px) {
+  .home-hero { min-height: auto; }
+  .hero-visual { min-height: 320px; max-height: 320px; padding: 0 20px 20px; }
+  .hero-photo-frame img { height: 300px; min-height: 300px; max-height: 300px; }
+  .hero-stamp { top: 16px; right: 28px; }
+  .science-track { grid-template-columns: minmax(0, 1fr); }
+  .science-track .science-track-image { order: 1; }
+  .science-track .science-track-content { order: 2; }
+  .science-track-image, .science-track-image img { min-height: 280px; max-height: 340px; }
+  .footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .footer-brand-block { grid-column: 1 / -1; max-width: 560px; }
+}
+@media (max-width: 680px) {
+  .topbar { gap: 10px; padding: 0 12px; }
+  .brand-lockup { min-width: 0; gap: 7px; }
+  .brand-mark { width: 34px; height: 34px; font-size: 22px; }
+  .brand-words strong { font-size: 11px; }
+  .brand-words small { font-size: 8px; }
+  .topbar-links { display: none; }
+  .topbar-search { margin-left: auto; width: min(43vw, 190px); min-width: 120px; }
+  .hero-copy { padding: 34px 22px 26px; }
+  .hero-copy h1 { font-size: clamp(43px, 12vw, 56px); }
+  .hero-visual { min-height: 255px; max-height: 255px; padding: 0 17px 18px; }
+  .hero-photo-frame img { height: 237px; min-height: 237px; max-height: 237px; }
+  .hero-stamp { width: 70px; height: 70px; right: 25px; top: 12px; }
+  .hero-stamp strong { font-size: 15px; }
+  .science-hero { grid-template-columns: minmax(0,1fr); padding: 32px 22px; }
+  .science-hero h1 { font-size: 46px; }
+  .science-hero-photo, .science-hero-photo img { min-height: 230px; max-height: 270px; }
+  .science-track-content { padding: 30px 22px; }
+  .footer-main { grid-template-columns: 1fr 1fr; gap: 25px 18px; }
+  .footer-bottom { align-items: flex-start; flex-direction: column; }
+  .site-footer { padding: 30px 22px 18px; }
+}
+
+
+/* Science landing hero: a controlled square photograph, never an intrinsic-height portrait. */
+.science-hero {
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+  align-items: center;
+  min-height: 0;
+}
+.science-hero-copy { align-self: center; }
+.science-hero-photo {
+  width: min(100%, 430px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  justify-self: end;
+  align-self: center;
+  border-radius: 18px;
+}
+.science-hero-photo img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+@media (max-width: 980px) {
+  .science-hero { grid-template-columns: minmax(0, 1fr); }
+  .science-hero-photo {
+    width: min(100%, 380px);
+    justify-self: center;
+    margin-inline: auto;
+  }
+}
+@media (max-width: 680px) {
+  .science-hero-photo {
+    width: min(100%, 320px);
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    max-height: none;
+  }
+  .science-hero-photo img { min-height: 0; max-height: none; }
+}

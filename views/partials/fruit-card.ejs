@@ -1,0 +1,13 @@
+<article class="fruit-card">
+  <a class="fruit-card-image" href="/fruit/<%= fruit.slug %>" aria-label="Open <%= fruit.name %> profile">
+    <img src="<%= fruit.image %>" <% if (fruit.slug !== 'dragon-fruit') { %>data-wiki-page="<%= fruit.wikiTitle || fruit.parentName || fruit.name %>" data-image-fallback="<%= fruit.image %>"<% } %> alt="<%= fruit.name %>" loading="lazy" decoding="async">
+    <span class="image-label"><%= fruit.recordType === 'Species profile' ? 'SPECIES' : (fruit.recordType === 'Named cultivar' ? 'CULTIVAR' : 'FORM GUIDE') %></span>
+  </a>
+  <div class="fruit-card-copy">
+    <div class="card-meta"><span><%= fruit.group %></span></div>
+    <h3><a href="/fruit/<%= fruit.slug %>"><%= fruit.name %></a></h3>
+    <% if (fruit.parentName) { %><p class="card-parent">Profile under <a href="/fruit/<%= fruit.parentSlug %>"><%= fruit.parentName %></a></p><% } else { %><p class="scientific-name"><%= fruit.scientificName %></p><% } %>
+    <p class="card-summary"><%= short(fruit.summary, 135) %></p>
+    <a class="text-link" href="/fruit/<%= fruit.slug %>">Explore profile <span aria-hidden="true">↗</span></a>
+  </div>
+</article>

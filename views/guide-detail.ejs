@@ -1,0 +1,18 @@
+<%- include('partials/head') %>
+<div class="breadcrumb-row"><a href="/">Home</a><span>／</span><a href="/guides">Learning library</a><span>／</span><span><%= guide.title %></span></div>
+<article class="longform-page guide-detail-editorial">
+  <header class="guide-article-hero">
+    <div class="guide-article-hero-copy">
+      <span class="eyebrow"><%= guide.category %> · FIELD NOTES</span>
+      <h1><%= guide.title %></h1>
+      <p class="longform-deck"><%= guide.intro %></p>
+      <div class="guide-hero-meta"><span>FRUIT ATLAS LEARNING LIBRARY</span><span>Explore the living world of fruit</span></div>
+    </div>
+    <figure class="guide-article-hero-photo">
+      <img src="<%= guide.image %>" alt="<%= guide.imageAlt %>" width="1200" height="800" fetchpriority="high" decoding="async">
+      <figcaption><%= guide.imageCaption || guide.category %></figcaption>
+    </figure>
+  </header>
+  <div class="longform-layout"><aside class="longform-toc"><span class="eyebrow">IN THIS GUIDE</span><% guide.sections.forEach(function(section,index) { %><a href="#section-<%= index+1 %>"><%= section.heading %></a><% }); %><a href="/guides">Learning library ↗</a></aside><div class="longform-body"><% guide.sections.forEach(function(section,index) { %><section id="section-<%= index+1 %>"><h2><%= section.heading %></h2><p><%= section.body %></p></section><% }); %><div class="editorial-note"><strong>Use the right context</strong><p>Fruit traits can vary by species, cultivar, maturity, growing region and preparation. For planting, food-safety or nutrition decisions, check a relevant regional reference.</p></div><a href="/fruits" class="button-primary">Apply this knowledge to a fruit <span aria-hidden="true">↗</span></a></div></div></article>
+<section class="section-block related-guides-section"><div class="section-heading-row"><div><span class="eyebrow">KEEP READING</span><h2>More field notes</h2></div><a href="/guides" class="outline-link">All guides <span aria-hidden="true">↗</span></a></div><div class="guide-card-grid"><% relatedGuides.forEach(function(item,index) { %><article class="guide-card guide-card-<%= index+1 %>"><a class="guide-card-image" href="/guide/<%= item.slug %>" aria-label="Read <%= item.title %>"><img src="<%= item.image %>" alt="<%= item.imageAlt %>" loading="lazy"></a><div class="guide-card-copy"><div class="guide-card-top"><span><%= item.category %></span></div><h3><a href="/guide/<%= item.slug %>"><%= item.title %></a></h3><p><%= item.intro %></p><a class="text-link" href="/guide/<%= item.slug %>">Read the guide <span aria-hidden="true">↗</span></a></div></article><% }); %></div></section>
+<%- include('partials/end') %>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#542b3d">
+  <meta name="description" content="<%= metaDescription || 'Explore the world of fruits with the Fruit Atlas.' %>">
+  <title><%= pageTitle || 'Fruit Atlas — a world encyclopedia of fruits' %></title>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://en.wikipedia.org">
+  <link rel="preconnect" href="https://upload.wikimedia.org">
+  <link rel="stylesheet" href="/css/fruit-atlas.css?v=20261028">
+  <link rel="stylesheet" href="/css/quality-fixes.css?v=20261028-square-science-photos-v2">
+  <link rel="stylesheet" href="/css/responsive-polish.css?v=20261029-mobile-tablet-v1">
+  <script src="/js/site.js?v=20261028" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+  <header class="topbar">
+    <button class="menu-toggle" id="sidebarMenuToggle" type="button" aria-expanded="true" aria-controls="siteSidebar" aria-label="Collapse navigation sidebar" title="Collapse navigation sidebar">
+      <span class="menu-lines" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="sr-only">Toggle navigation</span>
+    </button>
+    <a class="brand-lockup" href="/" aria-label="Fruit Atlas home">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span class="brand-words"><strong>FRUIT ATLAS</strong><small>A world of edible diversity</small></span>
+    </a>
+    <nav class="topbar-links" aria-label="Primary navigation">
+      <a href="/" class="topbar-link <%= currentPath === '/' ? 'active' : '' %>">Home</a>
+      <a href="/fruits" class="topbar-link <%= currentPath === '/fruits' || currentPath.startsWith('/fruit/') ? 'active' : '' %>">Fruits</a>
+      <a href="/families" class="topbar-link <%= currentPath.startsWith('/famil') || currentPath.startsWith('/family/') ? 'active' : '' %>">Families</a>
+      <a href="/fruit-science" class="topbar-link <%= currentPath === '/fruit-science' ? 'active' : '' %>">Science</a>
+      <a href="/guides" class="topbar-link <%= currentPath === '/guides' || currentPath.startsWith('/guide/') ? 'active' : '' %>">Learn</a>
+    </nav>
+    <form class="topbar-search" action="/search" method="get" role="search">
+      <label class="sr-only" for="topSearch">Search the atlas</label>
+      <input id="topSearch" name="q" value="<%= currentQuery.q || '' %>" placeholder="Find a fruit…" autocomplete="off">
+      <button type="submit" aria-label="Search">Search</button>
+    </form>
+  </header>
+  <div class="app-frame" id="appFrame">
+    <aside class="sidebar" id="siteSidebar" aria-label="Explore the Fruit Atlas">
+      <div class="sidebar-intro sidebar-simple-intro">
+        <span class="eyebrow">BROWSE THE ATLAS</span>
+        <p>Fruit diversity, plant science and food traditions.</p>
+      </div>
+      <a class="side-link sidebar-learning-simple" href="/guides"><span>Learning library</span></a>
+      <% navGroups.forEach(function(navGroup, navIndex) { const activeGroup = navGroup.items.some(function(item) { return currentPath === item[1] || (item[1] !== '/' && currentPath.startsWith(item[1] + '/')) || (item[1] === '/fruits' && currentPath.startsWith('/fruit/')) || (item[1] === '/families' && currentPath.startsWith('/family/')) || (item[1] === '/guides' && currentPath.startsWith('/guide/')); }); %>
+        <details class="sidebar-group" <%= navIndex === 0 || activeGroup ? 'open' : '' %>>
+          <summary><span class="sidebar-group-title"><%= navGroup.title %></span><span class="sidebar-chevron" aria-hidden="true">⌄</span></summary>
+          <nav aria-label="<%= navGroup.title %>">
+            <% navGroup.items.forEach(function(item) { const isActive = currentPath === item[1] || (item[1] !== '/' && currentPath.startsWith(item[1] + '/')) || (item[1] === '/fruits' && currentPath.startsWith('/fruit/')) || (item[1] === '/families' && currentPath.startsWith('/family/')) || (item[1] === '/guides' && currentPath.startsWith('/guide/')); %>
+              <a class="side-link <%= isActive ? 'active' : '' %>" href="<%= item[1] %>" <%= isActive ? 'aria-current="page"' : '' %>><span><%= item[0] %></span></a>
+            <% }); %>
+          </nav>
+        </details>
+      <% }); %>
+      <div class="sidebar-bottom-note"><span>FRUIT ATLAS · KNOWLEDGE LIBRARY</span></div>
+    </aside>
+    <button class="sidebar-scrim" id="sidebarScrim" type="button" aria-label="Close navigation"></button>
+    <div class="content-column" id="contentColumn">
+    <main class="main-content" id="mainContent">
+      <% if ((['/about','/benefits','/growing','/storage','/seasonal-calendar','/regions','/compare'].includes(currentPath) || currentPath === '/glossary' || currentPath.startsWith('/glossary/'))) { const landscape = currentPath === '/growing' ? { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=85', alt: 'Sunlight moving through a rich green woodland', label: 'PLANTS & PLACE' } : currentPath === '/regions' ? { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=85', alt: 'Layered forest greenery under filtered daylight', label: 'BIODIVERSITY & PLACE' } : currentPath === '/seasonal-calendar' ? { src: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1800&q=85', alt: 'Delicate blossoms in spring light', label: 'SEASONS & BLOOM' } : currentPath === '/storage' ? { src: 'https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1800&q=85', alt: 'A green woodland canopy and its intricate leaves', label: 'CARE & NATURAL SYSTEMS' } : currentPath === '/compare' ? { src: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=1800&q=85', alt: 'Fresh colourful fruits arranged for comparison', label: 'COMPARE & DISCOVER' } : currentPath === '/benefits' ? { src: 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=1800&q=85', alt: 'A vivid selection of fresh produce', label: 'FOOD & WELLBEING' } : currentPath === '/glossary' ? { src: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1800&q=85', alt: 'Detailed green leaves in natural light', label: 'BOTANICAL LANGUAGE' } : { src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=85', alt: 'Sunlight filtering through a quiet green forest', label: 'LEARN FROM THE LIVING WORLD' }; %>
+        <div class="ambient-landscape-banner" aria-label="<%= landscape.label %>"><img src="<%= landscape.src %>" data-image-fallback="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=85" alt="<%= landscape.alt %>" fetchpriority="high"><div class="ambient-landscape-overlay"></div><span><%= landscape.label %></span></div>
+      <% } %>

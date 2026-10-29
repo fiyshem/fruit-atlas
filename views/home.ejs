@@ -1,0 +1,72 @@
+<%- include('partials/head') %>
+<section class="home-hero">
+  <div class="hero-copy">
+    <div class="eyebrow eyebrow-light"><span></span> THE WORLD'S FRUIT ENCYCLOPEDIA</div>
+    <h1>Every fruit<br><em>has a story.</em></h1>
+    <p class="hero-deck">From orchard classics and tropical rarities to regional landraces and remarkable wild fruits, discover the flavours, families and traditions that make each one distinct.</p>
+    <form class="hero-search" action="/search" method="get" role="search">
+      <label class="sr-only" for="heroSearch">Search the fruit atlas</label>
+      <input id="heroSearch" name="q" placeholder="Search mango, Citrus reticulata, a cultivar…" autocomplete="off">
+      <button type="submit">Search atlas <span aria-hidden="true">↗</span></button>
+    </form>
+    <div class="hero-quicklinks"><span>Start with</span><a href="/fruit/mango">Mango</a><a href="/fruit/apple">Apple</a><a href="/fruit/dragon-fruit">Dragon fruit</a><a href="/families">Fruit families</a></div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-photo-frame">
+      <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=1600&q=88" data-wiki-page="Fruit" data-image-fallback="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=1400&q=84" alt="An abundant assortment of fresh fruits in many colours" fetchpriority="high">
+      <div class="hero-photo-caption"><span class="caption-rule"></span><span>ONE PLANET. THOUSANDS OF FRUIT STORIES.</span></div>
+    </div>
+    <div class="hero-stamp"><span>EDIBLE</span><strong>WONDER</strong><span>OF THE WORLD</span></div>
+    <div class="hero-float-note"><span class="float-note-number" aria-hidden="true">✦</span><span>Explore beyond<br>the familiar.</span></div>
+  </div>
+</section>
+
+<section class="atlas-intro-strip" aria-label="About the Fruit Atlas"><div><span class="eyebrow">A LIVING REFERENCE</span><strong>One atlas.<br>Many ways to learn.</strong></div><p>Explore species and cultivated selections, follow the science of taste and ripening, and discover how fruits connect plants, people and places.</p><a href="/fruit-science" class="outline-link">Fruit chemistry & biology <span aria-hidden="true">↗</span></a></section>
+
+<section class="section-block featured-section">
+  <div class="section-heading-row">
+    <div><span class="eyebrow">THE STARTING POINT</span><h2>Meet the fruit world</h2><p>Recognisable favourites and unfamiliar finds, each with its own botanical and culinary story.</p></div>
+    <a href="/fruits" class="outline-link">Explore all profiles <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="fruit-card-grid featured-grid">
+    <% featured.forEach(function(fruit) { %><%- include('partials/fruit-card', { fruit: fruit }) %><% }); %>
+  </div>
+</section>
+
+<section class="section-block family-section">
+  <div class="section-heading-row">
+    <div><span class="eyebrow">FOLLOW A THREAD</span><h2>Explore by fruit family</h2><p>Move from citrus and berries into palms, dryland fruits, melons and the botanical surprises hiding in everyday food.</p></div>
+    <a href="/families" class="text-link">All fruit groups <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="family-grid">
+    <% homeGroups.forEach(function(group, index) { %>
+      <a class="family-tile family-tile-<%= (index % 6) + 1 %>" href="/family/<%= group.slug %>">
+        <div class="family-tile-photo"><img src="<%= group.image %>" data-wiki-page="<%= group.examples[0] || 'Fruit' %>" data-image-fallback="<%= group.image %>" alt="Fruit examples from <%= group.name %>" loading="lazy"></div>
+        <div class="family-tile-copy"><span class="family-kicker">FRUIT COLLECTION</span><h3><%= group.name %></h3><p><%= group.description %></p><span class="family-tile-bottom"><%= group.examples.slice(0, 3).join(' · ') %> <b aria-hidden="true">↗</b></span></div>
+      </a>
+    <% }); %>
+  </div>
+</section>
+
+<section class="editorial-band">
+  <div class="editorial-image"><img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=1200&q=85" data-wiki-page="Tropical fruit" data-image-fallback="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=1200&q=85" alt="Fresh fruits arranged for a seasonal market" loading="lazy"></div>
+  <div class="editorial-copy"><span class="eyebrow eyebrow-light">MORE THAN A TASTE</span><h2>Fruit is botany,<br>culture and place.</h2><p>Why does one fruit ripen on the branch while another softens after picking? How do cultivar names travel between regions? What can skin, seed and flesh tell us about plant evolution?</p><a class="light-link" href="/guides">Open the learning library <span aria-hidden="true">↗</span></a></div>
+  <div class="editorial-number"><span>FIELD NOTES</span></div>
+</section>
+
+<section class="section-block learning-section">
+  <div class="section-heading-row"><div><span class="eyebrow">READ THE FIELD NOTES</span><h2>Good questions, deeper answers</h2><p>Explore articles on fruit science, nutrition, flavour, cooking, ripening, growing and the wider role of fruit in culture and nature.</p></div><a href="/guides" class="outline-link">All learning guides <span aria-hidden="true">↗</span></a></div>
+  <div class="guide-card-grid">
+    <% recentGuides.forEach(function(guide,index) { %>
+      <article class="guide-card guide-card-<%= index+1 %>"><a class="guide-card-image" href="/guide/<%= guide.slug %>" aria-label="Read <%= guide.title %>"><img src="<%= guide.image %>" alt="<%= guide.imageAlt %>" loading="lazy"></a><div class="guide-card-copy"><div class="guide-card-top"><span><%= guide.category %></span></div><h3><a href="/guide/<%= guide.slug %>"><%= guide.title %></a></h3><p><%= guide.intro %></p><a class="text-link" href="/guide/<%= guide.slug %>">Read the guide <span aria-hidden="true">↗</span></a></div></article>
+    <% }); %>
+  </div>
+</section>
+
+<section class="home-tools-strip">
+  <div><span class="eyebrow">A PRACTICAL ATLAS</span><h2>Choose your next discovery.</h2></div>
+  <a href="/compare"><strong>Compare fruits</strong><span>Place two profiles side by side.</span><b aria-hidden="true">↗</b></a>
+  <a href="/seasonal-calendar"><strong>Follow the seasons</strong><span>See why harvest timing changes by place.</span><b aria-hidden="true">↗</b></a>
+  <a href="/glossary"><strong>Build your vocabulary</strong><span>Decode botanical and growing terms.</span><b aria-hidden="true">↗</b></a>
+</section>
+<%- include('partials/end') %>
