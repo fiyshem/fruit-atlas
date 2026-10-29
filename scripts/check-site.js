@@ -80,12 +80,14 @@ const compileEjsForSyntaxCheck = (source, filename) => {
 const sharedHeader = fs.readFileSync(path.join(root, 'views', 'partials', 'head.ejs'), 'utf8');
 const sharedEnd = fs.readFileSync(path.join(root, 'views', 'partials', 'end.ejs'), 'utf8');
 const fixStyles = fs.readFileSync(path.join(root, 'public', 'css', 'quality-fixes.css'), 'utf8');
+const motionStyles = fs.readFileSync(path.join(root, 'public', 'css', 'motion-effects.css'), 'utf8');
 assert(sharedHeader.includes('class="content-column"'), 'Shared header is missing the flex content column');
 assert(sharedHeader.includes('<main class="main-content" id="mainContent">'), 'Shared header is missing the main landmark');
 assert(sharedHeader.includes('<details class="sidebar-group"'), 'Sidebar groups are not collapsible details accordions');
 assert(sharedHeader.includes('class="side-link sidebar-learning-simple"') && sharedHeader.includes('href="/guides"'), 'Sidebar is missing the simple educational library link');
 assert(!sharedHeader.includes('guideCount'), 'Shared sidebar should not display a guide-count badge');
 assert(sharedHeader.includes('/css/quality-fixes.css?v=20261028-square-science-photos-v2'), 'Shared UI fixes stylesheet is not linked');
+assert(sharedHeader.includes('/css/motion-effects.css?v=20261029-motion-v1'), 'Shared motion effects stylesheet is not linked');
 assert(sharedEnd.trimStart().startsWith('</main>'), 'Shared end partial must close main before rendering the footer');
 assert(!sharedEnd.includes('Explore the whole atlas'), 'Footer should not contain the expandable directory drawer');
 assert(sharedEnd.includes('footer-main') && sharedEnd.includes('footer-bottom'), 'Footer is missing the new multi-column layout');
@@ -95,6 +97,12 @@ assert(fixStyles.includes('overflow-y: auto;'), 'Sidebar is missing its independ
 assert(fixStyles.includes('.guide-library-filter'), 'Learning library filters are missing their layout styles');
 assert(fixStyles.includes('.ambient-landscape-banner'), 'Scenic educational page banners are missing');
 assert(fixStyles.includes('.guide-article-hero-photo'), 'Learning article split-hero photo styling is missing');
+assert(motionStyles.includes('prefers-reduced-motion: reduce'), 'Motion effects must respect reduced-motion preferences');
+assert(motionStyles.includes('data-motion-reveal'), 'Motion stylesheet is missing scroll-reveal states');
+assert(motionStyles.includes('.fruit-card:hover'), 'Motion stylesheet is missing subtle card hover effects');
+const siteJs = fs.readFileSync(path.join(root, 'public', 'js', 'site.js'), 'utf8');
+assert(siteJs.includes('function setupMotion()'), 'Site motion setup is missing');
+assert(siteJs.includes('setupMotion();'), 'Site motion setup is not initialized');
 assert(fixStyles.includes('@media (max-width: 680px)'), 'Learning article split hero is missing its mobile layout');
 const guideDetailTemplate = fs.readFileSync(path.join(root, 'views', 'guide-detail.ejs'), 'utf8');
 assert(guideDetailTemplate.includes('class="guide-article-hero"'), 'Learning article must use the split editorial hero');

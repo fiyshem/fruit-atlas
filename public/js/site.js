@@ -300,6 +300,66 @@
     });
   }
 
+  function setupMotion() {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+    const revealSelector = [
+      '.hero-copy', '.hero-photo-frame', '.science-hero-copy', '.science-hero-photo',
+      '.page-hero > *', '.guide-article-hero > *', '.longform-header',
+      '.fruit-profile-copy', '.fruit-profile-visual', '.section-heading-row',
+      '.fruit-card', '.family-tile', '.guide-card', '.guide-index-card',
+      '.nutrition-card', '.region-card', '.quick-link-grid > a', '.storage-step',
+      '.grow-question-grid > article', '.profile-feature', '.profile-section',
+      '.science-track-image', '.science-track-content', '.science-field-note-image',
+      '.science-field-note > div:not(.science-field-note-image)', '.glossary-row',
+      '.catalogue-type-grid > article', '.four-rule-grid > *', '.plain-two-column > *',
+      '.compare-fruit-heading', '.editorial-band > *', '.home-tools-strip > *',
+      '.guide-library-filter', '.results-bar', '.filter-panel', '.season-panel.is-active',
+      '.storage-feature', '.grow-choices', '.nutrition-feature', '.longform-body > section'
+    ].join(',');
+
+    const nodes = $$(revealSelector).filter((element, index, all) =>
+      all.indexOf(element) === index && !element.closest('[hidden], [aria-hidden="true"]')
+    );
+    if (!nodes.length) return;
+
+    const siblingCounts = new Map();
+    nodes.forEach(element => {
+      const parent = element.parentElement;
+      const delayIndex = siblingCounts.get(parent) || 0;
+      siblingCounts.set(parent, delayIndex + 1);
+      element.setAttribute('data-motion-reveal', '');
+      element.style.setProperty('--motion-delay', `${Math.min(delayIndex, 5) * 48}ms`);
+    });
+
+    document.body.classList.add('motion-enhanced');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-motion-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -28px 0px' });
+    nodes.forEach(element => observer.observe(element));
+
+    // Keep the header feedback subtle and avoid doing layout work on every scroll tick.
+    const topbar = $('.topbar');
+    if (topbar) {
+      let ticking = false;
+      const updateTopbar = () => {
+        topbar.classList.toggle('is-scrolled', window.scrollY > 8);
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateTopbar);
+      }, { passive: true });
+      updateTopbar();
+    }
+  }
+
   function setupFooterDetails() {
     // Native <details> intentionally manages the expandable, multi-column footer.
     // This does not overlay or cover the page: the document reflows when opened.
@@ -323,5 +383,6 @@
     setupSeasonExplorer();
     setupChecklists();
     setupFooterDetails();
+    setupMotion();
   });
 })();

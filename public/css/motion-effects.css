@@ -1,0 +1,257 @@
+/* Fruit Atlas motion system: calm, consistent movement across catalogue and learning pages. */
+:root {
+  --motion-ease: cubic-bezier(.22, .72, .24, 1);
+  --motion-fast: 160ms;
+  --motion-medium: 260ms;
+  --motion-slow: 520ms;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Page arrival: a slight rise and fade, not a dramatic zoom. */
+@keyframes fruit-page-arrive {
+  from { opacity: .72; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fruit-image-arrive {
+  from { opacity: .68; }
+  to { opacity: 1; }
+}
+@keyframes fruit-menu-arrive {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fruit-sheen {
+  from { background-position: 130% 0; }
+  to { background-position: -130% 0; }
+}
+
+body.motion-enhanced .main-content {
+  animation: fruit-page-arrive 460ms var(--motion-ease) both;
+}
+
+/* Scroll reveals are only activated by JS when IntersectionObserver is available. */
+body.motion-enhanced [data-motion-reveal] {
+  opacity: 0;
+  transform: translateY(17px);
+  transition:
+    opacity 520ms var(--motion-ease) var(--motion-delay, 0ms),
+    transform 520ms var(--motion-ease) var(--motion-delay, 0ms);
+  will-change: opacity, transform;
+}
+body.motion-enhanced [data-motion-reveal].is-motion-visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto;
+}
+
+/* Smooth feedback for navigation, controls and text links. */
+.topbar {
+  transition: box-shadow 220ms ease, background-color 220ms ease;
+}
+.topbar.is-scrolled {
+  box-shadow: 0 9px 28px rgba(39, 17, 29, .17);
+}
+.topbar-link,
+.topbar-dropdown > summary,
+.side-link,
+.sidebar-group > summary,
+.footer-link-column a,
+.footer-bottom a,
+.brand-lockup,
+.footer-brand,
+.text-link,
+.light-link,
+.outline-link,
+.button-primary,
+.menu-toggle,
+.topbar-search button,
+.pagination a,
+.guide-library-filter button,
+.search-suggestions a {
+  transition:
+    color var(--motion-fast) ease,
+    background-color var(--motion-fast) ease,
+    border-color var(--motion-fast) ease,
+    box-shadow var(--motion-medium) ease,
+    transform var(--motion-medium) var(--motion-ease),
+    opacity var(--motion-fast) ease;
+}
+
+.button-primary,
+.outline-link,
+.menu-toggle,
+.topbar-search button,
+.pagination a,
+.filter-panel button {
+  transform: translateZ(0);
+}
+.button-primary:active,
+.outline-link:active,
+.menu-toggle:active,
+.topbar-search button:active,
+.pagination a:active,
+.filter-panel button:active {
+  transform: translateY(1px) scale(.985);
+}
+.button-primary:hover,
+.outline-link:hover,
+.pagination a:hover {
+  box-shadow: 0 8px 20px rgba(81, 38, 59, .12);
+}
+.text-link > span,
+.button-primary > span,
+.outline-link > span,
+.footer-link-column a::after {
+  display: inline-block;
+  transition: transform var(--motion-medium) var(--motion-ease);
+}
+.text-link:hover > span,
+.button-primary:hover > span,
+.outline-link:hover > span,
+.footer-link-column a:hover::after {
+  transform: translate(3px, -1px);
+}
+
+/* Card lift is enabled only for devices with a real hover pointer. */
+.fruit-card,
+.family-tile,
+.guide-card,
+.guide-index-card,
+.nutrition-card,
+.region-card,
+.profile-feature,
+.storage-step,
+.grow-question-grid > article,
+.catalogue-type-grid > article,
+.glossary-row,
+.compare-fruit-heading,
+.quick-link-grid > a {
+  transition:
+    transform 280ms var(--motion-ease),
+    box-shadow 280ms var(--motion-ease),
+    border-color 220ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fruit-card:hover,
+  .family-tile:hover,
+  .guide-card:hover,
+  .guide-index-card:hover,
+  .nutrition-card:hover,
+  .region-card:hover,
+  .storage-step:hover,
+  .grow-question-grid > article:hover,
+  .catalogue-type-grid > article:hover,
+  .compare-fruit-heading:hover,
+  .quick-link-grid > a:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(63, 35, 47, .11);
+  }
+  .profile-feature:hover { transform: translateY(-3px); }
+  .fruit-card-image img,
+  .family-tile-photo img,
+  .guide-card-image img,
+  .region-card-image img,
+  .nutrition-feature-image img,
+  .compare-image img,
+  .science-track-image img,
+  .science-hero-photo img,
+  .guide-article-hero-photo img,
+  .hero-photo-frame img {
+    transition: transform 700ms var(--motion-ease), filter 450ms ease;
+    will-change: transform;
+  }
+  .fruit-card:hover .fruit-card-image img,
+  .family-tile:hover .family-tile-photo img,
+  .guide-card:hover .guide-card-image img,
+  .region-card:hover .region-card-image img,
+  .nutrition-feature:hover .nutrition-feature-image img,
+  .compare-fruit-heading:hover .compare-image img,
+  .science-track-image:hover img,
+  .science-hero-photo:hover img,
+  .guide-article-hero-photo:hover img,
+  .hero-photo-frame:hover img {
+    transform: scale(1.045);
+    filter: saturate(1.04);
+  }
+}
+
+/* Image load-in is brief and does not affect the dimensions of the layout. */
+img.is-loaded { animation: fruit-image-arrive 360ms ease-out both; }
+.image-label,
+.hero-side-note,
+.fruit-photo-caption,
+.science-photo-caption {
+  transition: background-color 220ms ease, opacity 220ms ease;
+}
+
+/* Native disclosure controls keep their existing accessible behaviour while adding movement. */
+.sidebar-group > summary .sidebar-chevron,
+.sidebar-group > summary::after,
+.footer-drawer-action b {
+  transition: transform 230ms var(--motion-ease), color 180ms ease;
+}
+.sidebar-group[open] > summary .sidebar-chevron,
+.sidebar-group[open] > summary::after {
+  transform: rotate(180deg);
+}
+.sidebar-group[open] > nav {
+  animation: fruit-menu-arrive 220ms var(--motion-ease) both;
+  transform-origin: top center;
+}
+.topbar-dropdown[open] .dropdown-panel {
+  animation: fruit-menu-arrive 180ms var(--motion-ease) both;
+  transform-origin: top right;
+}
+.search-suggestions:not([hidden]) {
+  animation: fruit-menu-arrive 150ms var(--motion-ease) both;
+  transform-origin: top center;
+}
+
+/* Focus remains visible; motion never replaces keyboard focus indicators. */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--mango, #f5b64a);
+  outline-offset: 3px;
+}
+
+/* Touch devices keep tap interactions responsive without sticky hover movement. */
+@media (hover: none) {
+  .fruit-card:active,
+  .family-tile:active,
+  .guide-card:active,
+  .guide-index-card:active,
+  .nutrition-card:active,
+  .region-card:active,
+  .quick-link-grid > a:active {
+    transform: scale(.992);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+  body.motion-enhanced .main-content,
+  body.motion-enhanced [data-motion-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+  .fruit-card:hover,
+  .family-tile:hover,
+  .guide-card:hover,
+  .guide-index-card:hover,
+  .nutrition-card:hover,
+  .region-card:hover,
+  .storage-step:hover,
+  .grow-question-grid > article:hover,
+  .catalogue-type-grid > article:hover,
+  .compare-fruit-heading:hover,
+  .quick-link-grid > a:hover { transform: none !important; }
+}
